@@ -24,4 +24,4 @@ conda activate dlc_tf
 export DLClight=True
 
 echo "Running dlc_tracking"
-python ~/code/python/looming_spots/looming_spots/tracking_dlc/run_dlc_training.py $config_path
+run_dlc_tracking $config_path $videos_dir $video_fname
