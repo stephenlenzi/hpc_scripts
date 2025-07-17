@@ -66,5 +66,3 @@ Then call the sbatch command on the batch script file.
 
 
 
-
-
