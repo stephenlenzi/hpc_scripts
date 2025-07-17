@@ -1,6 +1,36 @@
-# DLC on the HPC
+# Brainreg array batch script file creation
 
-## Installation
+Using the following function will write an array job file and will also create
+a file called commands.txt with a list of all the commands that will be run when the array script is launched.
+
+Its probably important not to edit this file while the job is running.
+
+Existing output directories are skipped.
+
+Rawdata directory is assumed to be in NIU neuroblueprint format: https://neuroblueprint.neuroinformatics.dev/latest/specification.html 
+
+probably the only things that matter are:
+
+- rawdata folder contains a folder for each mouse
+- derivatives data is the same as the rawdata folder but with /rawdata/ replaced by /derivatives/ (changing this might break things)
+
+
+```
+def save_array_job(rawdata_directory, 
+                   serial2p_directory_raw,
+                   array_job_outpath="/ceph/margrie/slenzi/batch_scripts/", 
+                   func=brainreg_command,
+                   time_limit="3-0:0",
+                   n_jobs=10,
+                   n_jobs_at_a_time=4,
+                   user_email="ucqfsle@ucl.ac.uk"
+                   ):
+
+```
+
+# DLC on the HPC 
+
+## Installation 
 
 
 Instructions for using the HPC for DLC
