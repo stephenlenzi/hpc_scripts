@@ -52,17 +52,3 @@ SSH again to the hpc.
 Then call the sbatch command on the batch script file.
 
 ```sbatch /path/to/batch_script.sh```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
