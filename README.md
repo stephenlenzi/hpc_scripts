@@ -13,7 +13,7 @@ probably the only things that matter are:
 
 - rawdata folder contains a folder for each mouse
 - derivatives data is the same as the rawdata folder but with /rawdata/ replaced by /derivatives/ (changing this might break things)
-
+- whole brain images can be kept in a different location to the "rawdata" and this should work as long as the mouse folder names match.. 
 
 ```
 def save_array_job(rawdata_directory, 
