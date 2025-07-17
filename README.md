@@ -1,4 +1,4 @@
-# BrainGlobe array batch script file creation
+# Brainglobe array batch script file creation
 
 Using the following function will write an array job file and will also create
 a file called commands.txt with a list of all the commands that will be run when the array script is launched.
