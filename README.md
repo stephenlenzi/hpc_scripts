@@ -41,10 +41,9 @@ Look in hpc_scripts/brainreg/brainreg_array_job_constructor.py and edit the argu
 def main():
     atlas = "allen_mouse_10um"
     overwrite_existing=False
-    rawdata_directory = Path("/ceph/margrie/slenzi/2025/dr/photometry/rawdata/")   
-    serial2p_directory_raw = Path("/ceph/margrie/slenzi/serial2p/whole_brains/raw/")
-    array_job_outpath="/ceph/margrie/slenzi/batch_scripts2/" 
-
+    rawdata_directory = Path("/path/to/rawdata/")   
+    serial2p_directory_raw = Path(""/path/to/whole_brains/")
+    array_job_outpath=""/path/to/batch_scripts/" 
 
 
 ```
