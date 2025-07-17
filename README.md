@@ -49,7 +49,7 @@ SSH again to the hpc.
 
 ```ssh user@hpc-gw2```
 
-Then you will need to edit the bash script to run your code as a batch job on the cluster.
+Then call the sbatch command on the batch script file.
 
 ```sbatch /path/to/batch_script.sh```
 
