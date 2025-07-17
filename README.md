@@ -34,7 +34,7 @@ slurm_params = {
 ```
 
 
-Look in hpc_scripts/brainreg/brainreg_array_job_constructor.py and edit the arguments in the main() function. Also the paths to the data should be changed to yours.
+Look in hpc_scripts/brainglobe/brainreg_array_job_constructor.py and edit the arguments in the main() function. Also the paths to the data should be changed to yours.
 
 ```
 
