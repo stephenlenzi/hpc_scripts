@@ -23,7 +23,7 @@ def brainreg_command(mouse_directory_derivatives,
                      function="brainreg", 
                      atlas="allen_mouse_10um", 
                      additional=None,
-                     overwrite_existing=False
+                     overwrite_existing=False,
                      ):
 
     input_paths = get_brain_all_channels_paths(mouse_directory_derivatives.stem, serial2p_directory_raw)
@@ -130,7 +130,9 @@ def save_array_job(rawdata_directory,
                    time_limit="3-0:0",
                    n_jobs=10,
                    n_jobs_at_a_time=4,
-                   user_email="ucqfsle@ucl.ac.uk"
+                   user_email="ucqfsle@ucl.ac.uk",
+                   atlas="allen_mouse_10um",
+                   overwrite_existing=False,
                    ):
     
 
@@ -148,7 +150,10 @@ def save_array_job(rawdata_directory,
     for mouse_directory_rawdata in all_directories:
         mouse_directory_derivatives = Path(str(mouse_directory_rawdata).replace("rawdata", "derivatives"))
         brainreg_commands = func(mouse_directory_derivatives, 
-                                 serial2p_directory_raw)
+                                 serial2p_directory_raw,
+                                 atlas=atlas,
+                                 overwrite_existing=False,
+                                 )
         
         if brainreg_commands is not None:
             with open(str(array_job_commands_outpath), "a") as f:
@@ -169,10 +174,19 @@ def save_array_job(rawdata_directory,
         f.write(array_script_template(array_job_commands_outpath))
 
 
-def main(rawdata_directory = Path("/ceph/margrie/slenzi/2025/dr/photometry/rawdata/"),   
-         serial2p_directory_raw = Path("/ceph/margrie/slenzi/serial2p/whole_brains/raw/"),
-):
-    save_array_job(rawdata_directory,serial2p_directory_raw)
+def main():
+    save_array_job(
+                   rawdata_directory = Path("/ceph/margrie/slenzi/2025/dr/photometry/rawdata/"),   
+                   serial2p_directory_raw = Path("/ceph/margrie/slenzi/serial2p/whole_brains/raw/"),
+                   array_job_outpath="/ceph/margrie/slenzi/batch_scripts/", 
+                   func=brainreg_command,
+                   time_limit="3-0:0",
+                   n_jobs=10,
+                   n_jobs_at_a_time=4,
+                   user_email="ucqfsle@ucl.ac.uk",
+                   atlas="allen_mouse_10um",
+                   overwrite_existing=False,
+                   )
     
 if __name__ == "__main__":
     main()
