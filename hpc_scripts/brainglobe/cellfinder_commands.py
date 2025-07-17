@@ -1,6 +1,6 @@
 from pathlib import Path
 from shared_functions import voxel_sizes, get_brain_all_channels_paths, load_experiment_directories, array_script_template
-from slurm_config import slurm_params
+from hpc_scripts.slurm_config import slurm_params
 
 def cellfinder_command(mouse_directory_derivatives, 
                        serial2p_directory_raw, 
@@ -47,6 +47,7 @@ def save_cellfinder_array_job(rawdata_directory,
                    atlas="allen_mouse_10um",
                    overwrite_existing=False,
                    slurm_params=slurm_params,
+                   model_path=None
                    ):
     
 
