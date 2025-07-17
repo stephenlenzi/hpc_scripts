@@ -10,6 +10,8 @@ def main():
     rawdata_directory = Path("/ceph/margrie/slenzi/2025/dr/photometry/rawdata/")   
     serial2p_directory_raw = Path("/ceph/margrie/slenzi/serial2p/whole_brains/raw/")
     array_job_outpath="/ceph/margrie/slenzi/batch_scripts2/" 
+    
+    model_path = None  #CELLFINDER ONLY: if you have your own custom model
 
     save_brainreg_array_job(
                             rawdata_directory = rawdata_directory,   
@@ -28,6 +30,7 @@ def main():
                               atlas=atlas,
                               overwrite_existing=overwrite_existing,
                               slurm_params=slurm_params,
+                              model_path=model_path,
                               )
     
 if __name__ == "__main__":
