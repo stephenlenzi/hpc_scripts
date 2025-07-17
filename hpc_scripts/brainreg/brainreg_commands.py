@@ -1,29 +1,6 @@
 from pathlib import Path
-
-
-def load_experiment_directories(rawdata_dir):
-    paths = list(Path(rawdata_dir).glob("*"))
-    mouse_ids = [path.stem for path in paths if path.is_dir()]
-    return paths, mouse_ids
-
-
-def voxel_sizes(recipe_path):
-    import yaml
-
-    with open(str(recipe_path), "r") as stream:
-        try:
-            params = yaml.safe_load(stream)
-            return params["VoxelSize"]
-        except yaml.YAMLError as exc:
-            print(exc)
-
-
-def get_brain_all_channels_paths(
-    mouse_id,
-    brain_dir,
-):
-    p=Path(brain_dir) / mouse_id / "stitchedImages_100"
-    return list(p.glob("*"))
+from shared_functions import voxel_sizes, get_brain_all_channels_paths, array_script_template, load_experiment_directories
+from slurm_config import slurm_params
 
 
 def brainreg_command(mouse_directory_derivatives, 
@@ -51,3 +28,51 @@ def brainreg_command(mouse_directory_derivatives,
         cmd = f"{function} {input_path} {output_path} {additional} -v {voxels['Z']} {voxels['X']} {voxels['Y']} --orientation psr --atlas {atlas}"
         brainreg_commands.append(cmd)
     return brainreg_commands
+
+
+def save_brainreg_array_job(rawdata_directory, 
+                   serial2p_directory_raw,
+                   array_job_outpath="/ceph/margrie/slenzi/batch_scripts/", 
+                   overwrite_existing=False,
+                   func=brainreg_command,
+                   atlas="allen_mouse_10um",
+                   slurm_params=slurm_params,
+                   ):
+    
+
+    array_job_commands_outpath = Path(array_job_outpath) / "commands_brainreg.txt"
+    array_job_script_outpath = Path(array_job_outpath) / "array_job_brainreg.sh"
+    
+    #delete contents of previous file
+    with open(str(array_job_commands_outpath), "w") as f:
+        pass 
+
+    all_directories, mouse_ids = load_experiment_directories(rawdata_directory)
+    
+    print(f"processing.. {mouse_ids}")
+    
+    for mouse_directory_rawdata in all_directories:
+        mouse_directory_derivatives = Path(str(mouse_directory_rawdata).replace("rawdata", "derivatives"))
+        brainreg_commands = func(mouse_directory_derivatives, 
+                                 serial2p_directory_raw,
+                                 atlas=atlas,
+                                 overwrite_existing=overwrite_existing,
+                                 )
+        
+        if brainreg_commands is not None:
+            with open(str(array_job_commands_outpath), "a") as f:
+                for cmd in brainreg_commands:
+                    f.write(cmd + "\n")
+        
+    array_script = array_script_template(
+                         path_to_commands=array_job_commands_outpath, 
+                          n_jobs=slurm_params["n_jobs"],
+                          n_jobs_at_a_time=slurm_params["n_jobs_at_a_time"],
+                          user_email=slurm_params["user_email"], 
+                          output_file_name="brainreg", 
+                          time_limit=slurm_params["time_limit"],
+                          memory_limit=slurm_params["memory_limit"],
+    )
+
+    with open(str(array_job_script_outpath), "w") as f:
+        f.write(array_script_template(array_job_commands_outpath))
