@@ -6,8 +6,8 @@ import warnings
 from hpc_scripts.slurm_config import slurm_params
 from xpmtd import metadata
 import subprocess
-from brainglobe_hpc.brainreg_commands import save_brainreg_array_job
-from brainglobe_hpc.cellfinder_commands import save_cellfinder_array_job
+from hpc_scripts.brainglobe_hpc.brainreg_commands import save_brainreg_array_job
+from hpc_scripts.brainglobe_hpc.cellfinder_commands import save_cellfinder_array_job
 
 
 def parse_rsync_dryrun_for_real_file_changes(result):

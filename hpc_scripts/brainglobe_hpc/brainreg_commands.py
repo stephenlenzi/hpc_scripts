@@ -1,5 +1,5 @@
 from pathlib import Path
-from brainglobe_hpc.shared_functions import voxel_sizes, get_brain_all_channels_paths, \
+from hpc_scripts.brainglobe_hpc.shared_functions import voxel_sizes, get_brain_all_channels_paths, \
     array_script_template, load_experiment_directories, merge_paths_to_linux_path,  clear_file, \
     write_commands_to_file, write_batch_script
 from hpc_scripts.slurm_config import slurm_params
