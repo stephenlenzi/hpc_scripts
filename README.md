@@ -55,8 +55,8 @@ def main():
     atlas = "allen_mouse_10um"
     overwrite_existing=False
     rawdata_directory = Path("/path/to/rawdata/")   
-    serial2p_directory_raw = Path(""/path/to/whole_brains/")
-    array_job_outpath=""/path/to/batch_scripts/" 
+    serial2p_directory_raw = Path("/path/to/whole_brains/")
+    array_job_outpath=Path("/path/to/batch_scripts/")
 
 
 ```
