@@ -79,6 +79,10 @@ To launch the gui:
 
 CRITICAL: the path to remote data folder should be set to the full path from /ceph/ up to the folder you have mounted. Usually this is the lab folder i.e.  /ceph/margrie/.
 
+When you set the raw data directory, the derivatives directory will be updated to the expected location, and the table should be populated with a list of mouse ids, or whatever the subfolders are called.
+
+You then need to select the mouse ids that you want to be included in the batch script, and then tick the box for brainreg or cellfinder. Then when you are happy, click run, this will lead to a batch script.sh and a commands file.txt. These should contain paths relative to /ceph/ which is the expected format on the hpc, rather than any custom mounts.
+
 ### Example output
 
 You should get two files out - one that stores the command for each slurm job as a single line e.g. "commands_brainreg.txt" and another
