@@ -77,6 +77,43 @@ To launch the gui:
 <img width="781" height="758" alt="image" src="https://github.com/user-attachments/assets/2de75d6c-7f75-424f-8715-4d09fdac7285" />
 
 
+### Example output
+
+You should get two files out - one that stores the command for each slurm job as a single line e.g. "commands_brainreg.txt" and another
+that contains the batch script for running those commands e.g. "array_job_brainreg.sh".
+
+#### Array job brainreg example
+```
+#!/bin/bash
+#
+#SBATCH -p gpu # partition (queue)
+#SBATCH -N 1   # number of nodes
+#SBATCH --mem 60G # memory pool for all cores
+#SBATCH --gres=gpu:1
+#SBATCH -t 3-0:0
+#SBATCH -o logs/output_brainreg_%A_%a.out
+#SBATCH -e logs/error_brainreg_%A_%a.err
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=
+#SBATCH --array=0-10%4
+
+echo "Loading Brainglobe module"
+module load brainglobe/2024-03-01
+
+cmd=$(sed -n "$((SLURM_ARRAY_TASK_ID+1))p" /ceph/margrie/slenzi/batch_scripts/commands_brainreg.txt)
+
+echo "Running command: $cmd"
+eval $cmd
+```
+#### Brainreg commands output example
+```
+brainreg /ceph/margrie/slenzi/serial2p/whole_brains/raw/sub-015_id-1105605_type-sertcregcampdr/stitchedImages_100/3 /ceph/margrie/slenzi/2025/dr/photometry/derivatives/sub-015_id-1105605_type-sertcregcampdr/anat/allen_mouse_10um/3  -v 25.0 2.504 2.504 --orientation psr --atlas allen_mouse_10um
+brainreg /ceph/margrie/slenzi/serial2p/whole_brains/raw/sub-015_id-1105605_type-sertcregcampdr/stitchedImages_100/2 /ceph/margrie/slenzi/2025/dr/photometry/derivatives/sub-015_id-1105605_type-sertcregcampdr/anat/allen_mouse_10um/2 --additional /ceph/margrie/slenzi/serial2p/whole_brains/raw/sub-015_id-1105605_type-sertcregcampdr/stitchedImages_100 -v 25.0 2.504 2.504 --orientation psr --atlas allen_mouse_10um
+
+
+... etc
+
+```
 ### Running scripts
 
 To run scripts you should submit jobs via slurm. For this you will need to have your python code
