@@ -74,9 +74,8 @@ have ceph mounted locally this should convert all paths to /ceph/ format.
 To launch the gui:
 ```python -m hpc_scripts.gui```
 
+<img width="781" height="758" alt="image" src="https://github.com/user-attachments/assets/2de75d6c-7f75-424f-8715-4d09fdac7285" />
 
-
-<img width="1102" height="778" alt="img" src="https://github.com/user-attachments/assets/e36da3ae-36c8-48e0-a818-56c11571f66c" />
 
 ### Running scripts
 
