@@ -23,7 +23,7 @@ a file called commands.txt with a list of all the commands that will be run when
 Ideally:
 
 - Rawdata folder contains a folder for each mouse
-- Derivatives data is the same as the rawdata folder but with /rawdata/ replaced by /derivatives/ (changing this might break things)
+- Derivatives data is the same folder hierarchy as the rawdata folder but with /rawdata/ replaced by /derivatives/.
 - Whole brain images can be kept in a different location to the "rawdata" and this should work as long as the mouse folder names match.
 
 
