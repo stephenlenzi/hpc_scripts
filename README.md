@@ -44,7 +44,7 @@ slurm_params = {
 ```
 
 
-Look in hpc_scripts/brainglobe/brainreg_array_job_constructor.py and edit the arguments in the main() function. Also the paths to the data should be changed to yours.
+Look in hpc_scripts/brainreg_array_job_constructor.py and edit the arguments in the main() function. Also the paths to the data should be changed to yours.
 
 CRITICAL: This must be run from somewhere with a direct ceph mount (i.e. path should look like /ceph/lab/user/data), and
 wont work on e.g. windows with ceph mount. If you want to run locally use the GUI (see below).
@@ -60,12 +60,23 @@ def main():
 
 
 ```
+
+
+To run the script:
+```python -m hpc_scripts.brainreg_array_job_constructor```
+
 ## Brainglobe array batch script file creation GUI
 
 For convenience there is a GUI where you can select which mice to add to the batch script for processing.
 By default anything that has been processed will not be added anyway. This needs to be run locally, so if you 
 have ceph mounted locally this should convert all paths to /ceph/ format.
 
+To launch the gui:
+```python -m hpc_scripts.gui```
+
+
+
+<img width="1102" height="778" alt="img" src="https://github.com/user-attachments/assets/e36da3ae-36c8-48e0-a818-56c11571f66c" />
 
 ### Running scripts
 
