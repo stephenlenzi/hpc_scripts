@@ -78,6 +78,8 @@ To launch the gui:
 <img width="781" height="758" alt="image" src="https://github.com/user-attachments/assets/2de75d6c-7f75-424f-8715-4d09fdac7285" />
 
 
+CRITICAL: the path to remote data folder should be set to the full path from /ceph/ up to the folder you have mounted. Usually this is the lab folder i.e.  /ceph/margrie/.
+
 ### Example output
 
 You should get two files out - one that stores the command for each slurm job as a single line e.g. "commands_brainreg.txt" and another
