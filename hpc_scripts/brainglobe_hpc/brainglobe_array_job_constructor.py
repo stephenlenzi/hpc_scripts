@@ -23,6 +23,7 @@ def main():
                             atlas=atlas,
                             overwrite_existing=overwrite_existing,
                             slurm_params=slurm_params,
+                            ceph_path_root=None,
                             )
     
 
@@ -34,6 +35,7 @@ def main():
                               overwrite_existing=overwrite_existing,
                               slurm_params=slurm_params,
                               model_path=model_path,
+                              ceph_path_root=None,
                               )
     
 if __name__ == "__main__":

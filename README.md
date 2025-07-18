@@ -1,4 +1,16 @@
-# Brainglobe array batch script file creation
+#HPC SCRIPTS
+
+## Installation
+
+
+```
+git clone https://github.com/stephenlenzi/hpc_scripts.git
+cd hpc_scripts
+pip install -e .
+```
+
+
+## Brainglobe array batch script file creation
 
 Using the following function will write an array job file and will also create
 a file called commands.txt with a list of all the commands that will be run when the array script is launched.
@@ -19,8 +31,6 @@ probably the only things that matter are:
 Go to hpc_scripts/slurm_config and set the parameters according to your need. Make sure to edit the email to be your email
 
 
-
-
 ```
 slurm_params = {
     "time_limit": "3-0:0", # 3 days, 0 hours, 0 minutes
@@ -36,6 +46,9 @@ slurm_params = {
 
 Look in hpc_scripts/brainglobe/brainreg_array_job_constructor.py and edit the arguments in the main() function. Also the paths to the data should be changed to yours.
 
+CRITICAL: This must be run from somewhere with a direct ceph mount (i.e. path should look like /ceph/lab/user/data), and
+wont work on e.g. windows with ceph mount. If you want to run locally use the GUI (see below).
+
 ```
 
 def main():
@@ -47,9 +60,14 @@ def main():
 
 
 ```
+## Brainglobe array batch script file creation GUI
+
+For convenience there is a GUI where you can select which mice to add to the batch script for processing.
+By default anything that has been processed will not be added anyway. This needs to be run locally, so if you 
+have ceph mounted locally this should convert all paths to /ceph/ format.
 
 
-## Running scripts
+### Running scripts
 
 To run scripts you should submit jobs via slurm. For this you will need to have your python code
 installed remotely and you will need a batch script, written in bash, that will be used to call jobs on
