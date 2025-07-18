@@ -1,9 +1,6 @@
-import sys
-sys.path.append('/nfs/nhome/live/slenzi/code/python/hpc_scripts')
-
 from pathlib import Path
-from brainreg_commands import brainreg_command, save_brainreg_array_job
-from cellfinder_commands import cellfinder_command, save_cellfinder_array_job
+from hpc_scripts.brainglobe_hpc.brainreg_commands import save_brainreg_array_job
+from hpc_scripts.brainglobe_hpc.cellfinder_commands import save_cellfinder_array_job
 
 from hpc_scripts.slurm_config import slurm_params
 
