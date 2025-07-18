@@ -2,6 +2,7 @@
 
 ## Installation
 
+Install within your favourite e.g. conda environment.
 
 ```
 git clone https://github.com/stephenlenzi/hpc_scripts.git
