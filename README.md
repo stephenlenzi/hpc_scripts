@@ -13,20 +13,18 @@ pip install -e .
 
 ## Brainglobe array batch script file creation
 
-Using the following function will write an array job file and will also create
+Using the following function will write an array job file (batch script) and will also create
 a file called commands.txt with a list of all the commands that will be run when the array script is launched.
 
-Its probably important not to edit this file while the job is running.
+- Don't edit this file while the job is running.
+- Existing output directories are skipped by default.
+- Rawdata directory is assumed to be in NIU neuroblueprint format: https://neuroblueprint.neuroinformatics.dev/latest/specification.html 
 
-Existing output directories are skipped.
+Ideally:
 
-Rawdata directory is assumed to be in NIU neuroblueprint format: https://neuroblueprint.neuroinformatics.dev/latest/specification.html 
-
-probably the only things that matter are:
-
-- rawdata folder contains a folder for each mouse
-- derivatives data is the same as the rawdata folder but with /rawdata/ replaced by /derivatives/ (changing this might break things)
-- whole brain images can be kept in a different location to the "rawdata" and this should work as long as the mouse folder names match.. 
+- Rawdata folder contains a folder for each mouse
+- Derivatives data is the same as the rawdata folder but with /rawdata/ replaced by /derivatives/ (changing this might break things)
+- Whole brain images can be kept in a different location to the "rawdata" and this should work as long as the mouse folder names match.
 
 
 Go to hpc_scripts/slurm_config and set the parameters according to your need. Make sure to edit the email to be your email
@@ -65,6 +63,7 @@ def main():
 
 To run the script:
 ```python -m hpc_scripts.brainreg_array_job_constructor```
+
 
 ## Brainglobe array batch script file creation GUI
 
