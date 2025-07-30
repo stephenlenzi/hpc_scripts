@@ -14,12 +14,12 @@
 config_path="/nfs/winstor/margrie/your/project/path/here/config.yaml"
 
 echo "Loading CUDA"
-module load /ceph/apps/ubuntu-20/modulefiles/cuda/11.2
+module load cuda/11.2
 
 echo "Loading conda environment"
 module load /ceph/apps/ubuntu-20/modulefiles/miniconda/4.9.2
 
-conda activate dlc_tf
+conda activate deeplabcut/2022-07-06
 
 export DLClight=True
 

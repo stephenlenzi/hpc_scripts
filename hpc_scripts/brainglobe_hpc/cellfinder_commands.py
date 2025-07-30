@@ -63,6 +63,7 @@ def save_cellfinder_array_job(rawdata_directory,
                    slurm_params=slurm_params,
                    model_path=None,
                    ceph_path_root=None,
+                   module_strings=["brainglobe/2024-03-01",],
                               ):
     
 

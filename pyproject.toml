@@ -17,7 +17,7 @@ dependencies = [
                 "xpmtd",
                 "magicgui",
                 "PyQt5; platform_system=='Windows'",
-	              "PyQt5==5.14; platform_system=='Linux'",
+	            
 ]
 
 [project.scripts]

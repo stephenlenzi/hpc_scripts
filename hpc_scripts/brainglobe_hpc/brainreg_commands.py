@@ -54,6 +54,7 @@ def save_brainreg_array_job(rawdata_directory,
                             slurm_params=slurm_params,
                             mouse_ids_to_process=None,
                             ceph_path_root=None,
+                            module_strings=None,
                             ):
     
 
@@ -86,6 +87,7 @@ def save_brainreg_array_job(rawdata_directory,
                           output_file_name="brainreg", 
                           time_limit=slurm_params["time_limit"],
                           memory_limit=slurm_params["memory_limit"],
+                          module_strings=module_strings,
     )
     write_batch_script(array_job_script_outpath, array_script)
 

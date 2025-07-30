@@ -32,6 +32,7 @@ def array_script_template(path_to_commands_ceph_remote_root="/ceph/margrie/slenz
                           output_file_name="brainreg",
                           time_limit="3-0:0",
                           memory_limit=60,
+                          module_strings=["brainglobe/2024-03-01",]
                           ):
 
     template= f"""#!/bin/bash
@@ -48,7 +49,7 @@ def array_script_template(path_to_commands_ceph_remote_root="/ceph/margrie/slenz
 #SBATCH --array=0-{n_jobs}%{n_jobs_at_a_time}
 
 echo "Loading Brainglobe module"
-module load brainglobe/2024-03-01
+{"".join([f"module load {x}\n" for x in module_strings])}
 
 cmd=$(sed -n "$((SLURM_ARRAY_TASK_ID+1))p" {path_to_commands_ceph_remote_root})
 
