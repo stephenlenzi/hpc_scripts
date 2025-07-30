@@ -83,6 +83,15 @@ When you set the raw data directory, the derivatives directory will be updated t
 
 You then need to select the mouse ids that you want to be included in the batch script, and then tick the box for brainreg or cellfinder. Then when you are happy, click run, this will lead to a batch script.sh and a commands file.txt. These should contain paths relative to /ceph/ which is the expected format on the hpc, rather than any custom mounts.
 
+### Custom modules
+If you want to use custom modules from the GUI this is doable. You need to set the path to the modulefiles and they will be read out and put as options.
+You can select as many as you like and it will execute them all.
+
+<img width="868" height="39" alt="image" src="https://github.com/user-attachments/assets/4c7fb8df-63fb-456a-bcf4-b8e5f28990ee" />
+
+<img width="843" height="179" alt="image" src="https://github.com/user-attachments/assets/234ffaf8-ee00-49f2-b440-abff6b036d7b" />
+
+
 ### Example output
 
 You should get two files out - one that stores the command for each slurm job as a single line e.g. "commands_brainreg.txt" and another
