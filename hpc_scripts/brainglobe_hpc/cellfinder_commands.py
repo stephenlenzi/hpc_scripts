@@ -42,6 +42,8 @@ def cellfinder_command(mouse_directory_derivatives,
             output_path = merge_paths_to_linux_path(ceph_path_root, output_path)
             signal_path = merge_paths_to_linux_path(ceph_path_root, signal_path)
             background_path = merge_paths_to_linux_path(ceph_path_root, background_path)
+            if model_path is not None:
+                model_path = merge_paths_to_linux_path(ceph_path_root, Path(model_path))
 
 
         voxels = voxel_sizes(recipe_path)

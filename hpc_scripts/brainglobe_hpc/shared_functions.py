@@ -117,9 +117,30 @@ def load_session_directories(rawdata_directory):
 
 
 def merge_paths_to_linux_path(base_path, other_path):
+    """
+    Convert paths to Linux format, handling Mac mount points.
+    
+    If other_path is on a Mac mount point (/Volumes/...), it will replace
+    the /Volumes/{volume_name}/ prefix with base_path. Otherwise, it preserves
+    the path structure or merges paths relative to base_path.
+    """
     base = Path(base_path)
     other = Path(other_path)
-
+    
+    # Check if other_path is on a Mac mount point (/Volumes/...)
+    if other.is_absolute() and len(other.parts) >= 3:
+        if other.parts[1] == 'Volumes' and base.is_absolute():
+            # Extract the volume name (e.g., 'margrie' from '/Volumes/margrie/...')
+            volume_name = other.parts[2]
+            # Replace /Volumes/{volume_name}/ with base_path
+            remaining_parts = other.parts[3:]
+            merged = base
+            for part in remaining_parts:
+                merged = merged / part
+            parts = [part for part in merged.parts if part not in ('\\', '')]
+            return PurePosixPath('/', *parts)
+    
+    # Original logic for other cases
     try:
         rel = other.relative_to(base)
         merged = base / rel
